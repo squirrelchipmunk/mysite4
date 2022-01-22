@@ -51,10 +51,10 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/join", method= {RequestMethod.GET, RequestMethod.POST})
-	public String join(@ModelAttribute UserVo joinVo) {
+	public String join(@ModelAttribute UserVo userVo) {
 		System.out.println("join()");
 		
-		userDao.insert(joinVo);
+		userDao.insert(userVo);
 		
 		return "user/joinOk";
 	}
@@ -81,10 +81,10 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/modify", method= {RequestMethod.GET, RequestMethod.POST})
-	public String modify(@ModelAttribute UserVo modifyVo,
+	public String modify(@ModelAttribute UserVo userVo,
 						 HttpSession session) {
-		userDao.modify(modifyVo);
-		UserVo authVo = userDao.getUser(modifyVo);
+		userDao.modify(userVo);
+		UserVo authVo = userDao.getUser(userVo);
 		session.setAttribute("authUser", authVo);
 		
 		return "redirect:/main";
