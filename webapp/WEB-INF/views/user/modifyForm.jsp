@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite4/assets/css/user.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/user.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -38,25 +38,25 @@
 	
 				<div id="user">
 					<div id="modifyForm">
-						<form action="/mysite4/user/modify" method="get">
+						<form action="${pageContext.request.contextPath}/user/modify" method="get">
 							
-							<input type="hidden" name="id" value="${userData.id}">
+							<input type="hidden" name="id" value="${userInfo.id}">
 							<!-- 아이디 -->
 							<div class="form-group">
 								<label class="form-text" for="input-uid">아이디</label> 
-								<span class="text-large bold">${userData.id}</span>
+								<span class="text-large bold">${userInfo.id}</span>
 							</div>
 	
 							<!-- 비밀번호 -->
 							<div class="form-group">
 								<label class="form-text" for="input-pass">패스워드</label> 
-								<input type="text" id="input-pass" name="password" value="${userData.password}" placeholder="비밀번호를 입력하세요"	>
+								<input type="text" id="input-pass" name="password" value="${userInfo.password}" placeholder="비밀번호를 입력하세요"	>
 							</div>
 	
 							<!-- 이메일 -->
 							<div class="form-group">
 								<label class="form-text" for="input-name">이름</label> 
-								<input type="text" id="input-name" name="name" value="${userData.name}" placeholder="이름을 입력하세요">
+								<input type="text" id="input-name" name="name" value="${userInfo.name}" placeholder="이름을 입력하세요">
 							</div>
 	
 							<!-- //나이 -->
@@ -64,7 +64,7 @@
 								<span class="form-text">성별</span> 
 								
 								<c:choose>
-									<c:when test="${userData.gender == 'male' }">
+									<c:when test="${userInfo.gender == 'male' }">
 										<label for="rdo-male">남</label> 
 										<input type="radio" id="rdo-male" name="gender" value="male" checked> 
 										<label for="rdo-female">여</label> 

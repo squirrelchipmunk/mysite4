@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite4/assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -59,12 +59,12 @@
 								<c:forEach items="${bList}" var="vo">
 									<tr>
 										<td>${vo.no}</td>
-										<td class="text-left"><a href="/mysite4/board/read?no=${vo.no}">${vo.title}</a></td>
+										<td class="text-left"><a href="${pageContext.request.contextPath}/board/read?no=${vo.no}">${vo.title}</a></td>
 										<td>${vo.writer}</td>
 										<td>${vo.hit}</td>
 										<td>${vo.regDate}</td>
 										<c:if test="${vo.userNo == authUser.no }">
-											<td><a href="/mysite4/board/delete?no=${vo.no}">[삭제]</a></td>
+											<td><a href="${pageContext.request.contextPath}/board/delete?no=${vo.no}">[삭제]</a></td>
 										</c:if>
 									</tr>
 								</c:forEach>
@@ -92,7 +92,7 @@
 							<div class="clear"></div>
 						</div>
 						<c:if test="${!empty authUser}">
-							<a id="btn_write" href="/mysite4/board/writeForm">글쓰기</a>
+							<a id="btn_write" href="${pageContext.request.contextPath}/board/writeForm">글쓰기</a>
 						</c:if>
 					</div>
 					<!-- //list -->

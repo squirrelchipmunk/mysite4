@@ -24,7 +24,7 @@
 		]]>
 	</insert>
 	
-	<select id="getUserData" parameterType="int" resultType="UserVo">
+	<select id="getUserInfo" parameterType="int" resultType="UserVo">
 		<![CDATA[
 			select id,
 				   password,

@@ -16,13 +16,13 @@ public class UserDao {
 		sqlSession.insert("user.insertUser",userVo);
 	}
 
-	public UserVo getUser(UserVo userVo) {
+	public UserVo getAuthUser(UserVo userVo) {
 		UserVo authVo = sqlSession.selectOne("user.getUser",userVo);
 		return authVo; 
 	}
 	
-	public UserVo getUserData(int no) {
-		UserVo userVo = sqlSession.selectOne("user.getUserData",no);
+	public UserVo getUserInfo(int no) {
+		UserVo userVo = sqlSession.selectOne("user.getUserInfo",no);
 		return userVo; 
 	}
 	

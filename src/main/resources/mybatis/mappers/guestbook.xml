@@ -6,7 +6,7 @@
 		<![CDATA[
 			select no,
 				   name,
-				   content,
+				   content ,
 				   to_char(reg_date,'yyyy-mm-dd hh24:mi:ss') regDate
 			from guestbook
 			order by regDate desc

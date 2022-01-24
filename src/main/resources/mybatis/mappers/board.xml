@@ -3,7 +3,7 @@
 <mapper namespace="board">
 
 
-	<select id="getBoardList" resultType="BoardVo">
+	<select id="getList" resultType="BoardVo">
 		<![CDATA[
 			select b.no no,
 				   title,
