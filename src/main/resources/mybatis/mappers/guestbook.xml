@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="guestbook">
 
-	<select id="getGuestBookList" resultType="GuestBookVo">
+	<select id="getList" resultType="GuestBookVo">
 		<![CDATA[
 			select no,
 				   name,
@@ -13,7 +13,7 @@
 		]]>
 	</select>
 	
-	<insert id="addGuestBook" parameterType="GuestBookVo">
+	<insert id="add" parameterType="GuestBookVo">
 		<![CDATA[
 			insert into guestbook
 			values( SEQ_GUESTBOOK_NO.nextval,
@@ -25,7 +25,7 @@
 		]]>
 	</insert>
 	
-	<delete id="deleteGuestBook" parameterType="GuestBookVo">
+	<delete id="delete" parameterType="GuestBookVo">
 		<![CDATA[
 			delete from guestbook
 			where no = #{no} and password = #{password}

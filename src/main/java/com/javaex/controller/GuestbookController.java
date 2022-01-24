@@ -21,7 +21,7 @@ public class GuestbookController {
 	
 	@RequestMapping(value={"/addList",""}, method= {RequestMethod.GET, RequestMethod.POST})
 	public String addList(Model model){
-		List<GuestBookVo> guestBookList = guestBookDao.getGuestBookList();
+		List<GuestBookVo> guestBookList = guestBookDao.getList();
 		model.addAttribute("gList",guestBookList);
 		
 		return "guestbook/addList";
@@ -38,14 +38,14 @@ public class GuestbookController {
 	
 	@RequestMapping(value="/add", method= {RequestMethod.GET, RequestMethod.POST})
 	public String add(@ModelAttribute GuestBookVo guestBookVo){
-		guestBookDao.addGuestBook(guestBookVo);
+		guestBookDao.add(guestBookVo);
 			
 		return "redirect:addList";
 	}
 	
 	@RequestMapping(value="/delete", method= {RequestMethod.GET, RequestMethod.POST})
 	public String delete(@ModelAttribute GuestBookVo guestBookVo){
-		guestBookDao.deleteGuestBook(guestBookVo);
+		guestBookDao.delete(guestBookVo);
 		
 		return "redirect:addList";
 	}

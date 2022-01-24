@@ -15,17 +15,17 @@ public class GuestBookDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<GuestBookVo> getGuestBookList() {
-		List<GuestBookVo> guestBookList = sqlSession.selectList("guestbook.getGuestBookList");
+	public List<GuestBookVo> getList() {
+		List<GuestBookVo> guestBookList = sqlSession.selectList("guestbook.getList");
 		return guestBookList;
 	}
 	
-	public void addGuestBook(GuestBookVo guestBookVo) {
-		sqlSession.insert("guestbook.addGuestBook", guestBookVo);
+	public void add(GuestBookVo guestBookVo) {
+		sqlSession.insert("guestbook.add", guestBookVo);
 	}
 
-	public void deleteGuestBook(GuestBookVo guestBookVo) {
-		sqlSession.delete("guestbook.deleteGuestBook", guestBookVo);
+	public void delete(GuestBookVo guestBookVo) {
+		sqlSession.delete("guestbook.delete", guestBookVo);
 	}
 	
 }
