@@ -41,7 +41,6 @@ public class RBoardDao {
 	}
 
 	public void rWrite(RBoardVo boardVo) {
-		sqlSession.insert("rBoard.rWrite",boardVo);
 		System.out.println("dao : vo.orderNo :"+boardVo.getOrderNo());
 		
 	}
