@@ -71,7 +71,7 @@
 								<textarea id="txt-content" name="content"> ${board.content} </textarea>
 							</div>
 							
-							<a id="btn_cancel" href="${pageContext.request.contextPath}/board/rRead">취소</a>
+							<a id="btn_cancel" href="${pageContext.request.contextPath}/board/rRead?no=${board.no}">취소</a>
 							<button id="btn_modify" type="submit" >수정</button>
 							
 						</form>
