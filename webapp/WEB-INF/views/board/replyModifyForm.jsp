@@ -61,14 +61,14 @@
 							<!-- 제목 -->
 							<div class="form-group">
 								<label class="form-text" for="txt-title">제목</label>
-								<input type="text" id="txt-title" name="" value="${board.title}">
+								<input type="text" id="txt-title" name="title" value="${board.title}">
 							</div>
 						
 							
 						
 							<!-- 내용 -->
 							<div class="form-group">
-								<textarea id="txt-content"> ${board.content} </textarea>
+								<textarea id="txt-content" name="content"> ${board.content} </textarea>
 							</div>
 							
 							<a id="btn_cancel" href="${pageContext.request.contextPath}/board/rRead">취소</a>

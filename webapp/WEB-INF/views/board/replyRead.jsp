@@ -76,7 +76,7 @@
 							<c:if test="${board.userNo == authUser.no }">
 								<a id="btn_modify" href="${pageContext.request.contextPath}/board/rModifyForm?no=${board.no}">수정</a>
 							</c:if>
-							<a id="btn_modify" href="${pageContext.request.contextPath}/board/">목록</a>
+							<a id="btn_modify" href="${pageContext.request.contextPath}/board/rList">목록</a>
 							
 							
 						</form>

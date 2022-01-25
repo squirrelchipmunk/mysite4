@@ -21,16 +21,21 @@ create table rboard(
     constraint fk_user_no foreign key(user_no) REFERENCES users(no)
 );
 
-insert into rboard
-values(seq_rboard_no.nextval, 'title', 'contnet', 0, sysdate, 1, seq_rboard_no.currval, 1,  0);
-insert into rboard
-values(seq_rboard_no.nextval, 'title2', 'contnet2', 0, sysdate, 1, seq_rboard_no.currval, 1,  0);
-insert into rboard
-values(seq_rboard_no.nextval, 'title3', 'contnet3', 0, sysdate, 1, seq_rboard_no.currval, 1,  0);
-insert into rboard
-values(seq_rboard_no.nextval, 'title4', 'contnet4', 0, sysdate, 2, 2, 2,  1);
-insert into rboard
-values(seq_rboard_no.nextval, 'title4', 'contnet4', 0, sysdate, 1, 2, 3,  2);
-commit;
 
-select * from rboard;
+set define off;
+create or replace function depth_title( 
+    title in varchar2, 
+    depth in number
+)return varchar2
+    is
+        str varchar2(1000);
+        i number :=0;
+    begin
+        str := title;
+        while(i<depth)
+        loop
+            str := concat('&nbsp;&nbsp;&nbsp;&nbsp;',str);
+            i := i+1;
+        end loop;        
+    return str;
+end;

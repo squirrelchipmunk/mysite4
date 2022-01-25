@@ -15,11 +15,14 @@ public class RBoardService {
 	@Autowired
 	private RBoardDao rBoardDao;
 
+	public List<RBoardVo> list() {
+		return rBoardDao.getList();
+	}
+	
 	public void write(UserVo authVo, RBoardVo boardVo) {
 		int userNo = authVo.getNo();
 		boardVo.setUserNo(userNo);
 		
-		System.out.println(boardVo);
 		if(boardVo.getGroupNo() == 0) {	// 글쓰기
 			rBoardDao.write(boardVo);
 		}
@@ -29,16 +32,6 @@ public class RBoardService {
 			boardVo.setDepth( boardVo.getDepth()+1 );		 // 깊이 정하기
 			rBoardDao.rWrite(boardVo);
 		}
-	}
-
-	public List<RBoardVo> list() {
-		List<RBoardVo> list = rBoardDao.getList();
-		for(RBoardVo vo : list) {
-			for(int i=0; i<vo.getDepth() ;i++) {
-				vo.setTitle( "&nbsp;&nbsp;&nbsp;&nbsp;"+ vo.getTitle());
-			}
-		}
-		return list;
 	}
 
 	public RBoardVo read(int no) {
@@ -54,15 +47,14 @@ public class RBoardService {
 		
 	}
 
-	public RBoardVo getBoard(int no) {
-		return rBoardDao.getBoard(no);
-	}
-
 	public void modify(RBoardVo boardVo) {
 		rBoardDao.modify(boardVo);
 		
 	}
 	
+	public RBoardVo getBoard(int no) {
+		return rBoardDao.getBoard(no);
+	}
 	
 	
 }

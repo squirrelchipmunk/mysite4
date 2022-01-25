@@ -29,7 +29,7 @@
 	<select id="getList" resultType="RBoardVo">
 		<![CDATA[
 			select b.no no,
-				   title,
+				   depth_title(title,depth) title,
 				   hit,
 				   to_char(reg_date, 'yy-mm-dd hh24:mi') regDate,
 				   u.no userNo,

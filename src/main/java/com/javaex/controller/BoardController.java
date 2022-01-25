@@ -120,7 +120,6 @@ public class BoardController {
 	@RequestMapping(value = "/rWrite", method= {RequestMethod.GET,RequestMethod.POST})
 	public String rWrite(@SessionAttribute(value="authUser", required=false) UserVo authVo,
 							@ModelAttribute RBoardVo boardVo) {
-		System.out.println(boardVo);
 		rBoardService.write(authVo, boardVo);
 		return "redirect:/board/rList";
 	}
