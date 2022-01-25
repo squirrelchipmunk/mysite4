@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rBoard">
+
+ 
+	<insert id="write" parameterType="RBoardVo">
+			<![CDATA[
+				insert into rboard
+				values(seq_rboard_no.nextval, #{title}, #{content}, 0,  sysdate, #{userNo}, seq_rboard_no.currval, 1, 0)
+			]]>
+	</insert>
+	
+	<insert id="rWrite" parameterType="RBoardVo">
+			<![CDATA[
+				insert into rboard values(
+					seq_rboard_no.nextval, 
+					#{title}, 
+					#{content}, 
+					0,  
+					sysdate,
+					#{userNo}, 
+					#{groupNo}, 
+					#{orderNo}, 
+					#{depth}
+				)
+			]]>
+	</insert>
+	
+	<select id="getList" resultType="RBoardVo">
+		<![CDATA[
+			select b.no no,
+				   title,
+				   hit,
+				   to_char(reg_date, 'yy-mm-dd hh24:mi') regDate,
+				   u.no userNo,
+				   name writer,
+				   group_no groupNo,
+				   order_no orderNo,
+				   depth
+			from users u, rboard b
+			where u.no = b.user_no
+			order by groupNo DESC, orderNo ASC
+		]]>
+	</select>
+	
+	<update id="incHit" parameterType="int">
+		<![CDATA[
+			update rboard
+			set hit = hit+1
+			where no = #{no}
+		]]>
+	</update>
+	 
+	<select id="getBoard" parameterType="int" resultType="RBoardVo">
+		<![CDATA[
+			select b.no no,
+				   title,
+				   content,
+				   hit,
+				   to_char(reg_date, 'yy-mm-dd hh24:mi') regDate,
+				   u.no userNo,
+				   name writer,
+				   group_no groupNo,
+				   order_no orderNo,
+				   depth
+			from users u, rboard b
+			where u.no = b.user_no and
+				  b.no = #{no}
+			order by regDate desc
+		]]>
+	</select>
+	
+ 	<delete id="delete" parameterType="int">
+		<![CDATA[
+			delete from rboard
+			where no = #{no}
+		]]>
+	</delete>
+	
+	<update id="modify" parameterType="BoardVo">
+		<![CDATA[
+			update rboard
+			set title = #{title},
+				content = #{content}
+			where no = #{no}	
+		]]>
+	</update>
+	
+	<update id="updateOrder" parameterType="int">
+		<![CDATA[
+			update rboard
+			set order_no = order_no+1
+			where order_no >= #{orderNo}	
+		]]>
+	</update>
+ 
+</mapper>

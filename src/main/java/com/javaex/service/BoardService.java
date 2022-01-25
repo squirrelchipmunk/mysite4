@@ -35,8 +35,6 @@ public class BoardService {
 	}
 	
 	public void write(UserVo authVo, BoardVo boardVo) {
-		System.out.println(authVo);
-		System.out.println(boardVo);
 		int userNo = authVo.getNo();
 		boardVo.setUserNo(userNo);
 		boardDao.write(boardVo);

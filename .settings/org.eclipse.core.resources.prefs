@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//webapp/WEB-INF/views/board/replyList.jsp=UTF-8
+encoding//webapp/WEB-INF/views/board/replyModifyForm.jsp=UTF-8
+encoding//webapp/WEB-INF/views/board/replyRead.jsp=UTF-8
+encoding//webapp/WEB-INF/views/board/replyWriteForm.jsp=UTF-8
