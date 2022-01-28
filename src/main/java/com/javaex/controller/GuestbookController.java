@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.javaex.service.GuestbookService;
-import com.javaex.vo.GuestBookVo;
+import com.javaex.vo.GuestbookVo;
 
 @Controller
 @RequestMapping("/guest")
@@ -21,7 +21,7 @@ public class GuestbookController {
 	
 	@RequestMapping(value={"","/","/addList"}, method= {RequestMethod.GET, RequestMethod.POST})
 	public String addList(Model model){
-		List<GuestBookVo> guestBookList = guestbookService.getList();
+		List<GuestbookVo> guestBookList = guestbookService.getList();
 		
 		model.addAttribute("gList",guestBookList);
 		return "guestbook/addList";
@@ -33,14 +33,14 @@ public class GuestbookController {
 	}
 	
 	@RequestMapping(value="/add", method= {RequestMethod.GET, RequestMethod.POST})
-	public String add(@ModelAttribute GuestBookVo guestBookVo){
-		guestbookService.add(guestBookVo);
+	public String add(@ModelAttribute GuestbookVo guestbookVo){
+		guestbookService.add(guestbookVo);
 		return "redirect:addList";
 	}
 	
 	@RequestMapping(value="/delete", method= {RequestMethod.GET, RequestMethod.POST})
-	public String delete(@ModelAttribute GuestBookVo guestBookVo){
-		guestbookService.delete(guestBookVo);
+	public String delete(@ModelAttribute GuestbookVo guestbookVo){
+		guestbookService.delete(guestbookVo);
 		return "redirect:addList";
 	}
 	

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="guestbook">
 
-	<select id="getList" resultType="GuestBookVo">
+	<select id="getList" resultType="GuestbookVo">
 		<![CDATA[
 			select no,
 				   name,
@@ -13,7 +13,33 @@
 		]]>
 	</select>
 	
-	<insert id="add" parameterType="GuestBookVo">
+	<select id="selectByNo" parameterType="int" resultType="GuestbookVo">
+		<![CDATA[
+			select no,
+				   name,
+				   content ,
+				   to_char(reg_date,'yyyy-mm-dd hh24:mi:ss') regDate
+			from guestbook
+			where no = #{no}
+		]]>
+	</select>
+	
+	<insert id="insertSelectKey" parameterType="GuestbookVo">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select seq_guestbook_no.nextval from dual		
+		</selectKey>
+		<![CDATA[
+			insert into guestbook
+			values( #{no},
+				    #{name},
+				    #{password},
+					#{content},
+					sysdate
+			)
+		]]>
+	</insert>
+	
+	<insert id="add" parameterType="GuestbookVo">
 		<![CDATA[
 			insert into guestbook
 			values( SEQ_GUESTBOOK_NO.nextval,
@@ -25,7 +51,7 @@
 		]]>
 	</insert>
 	
-	<delete id="delete" parameterType="GuestBookVo">
+	<delete id="delete" parameterType="GuestbookVo">
 		<![CDATA[
 			delete from guestbook
 			where no = #{no} and password = #{password}

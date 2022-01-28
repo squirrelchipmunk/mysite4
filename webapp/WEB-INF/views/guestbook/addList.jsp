@@ -67,23 +67,23 @@
 					
 					
 					<c:forEach items="${gList}" var="vo">
-					<table class="guestRead">
-						<colgroup>
-							<col style="width: 10%;">
-							<col style="width: 40%;">
-							<col style="width: 40%;">
-							<col style="width: 10%;">
-						</colgroup>
-						<tr>
-							<td>${vo.no}</td>
-							<td>${vo.name}</td>
-							<td>${vo.regDate}</td>
-							<td><a href="${pageContext.request.contextPath}/guest/deleteForm?no=${vo.no}">[삭제]</a></td>
-						</tr>
-						<tr>
-							<td colspan=4 class="text-left">${vo.content}</td>
-						</tr>
-					</table>
+						<table class="guestRead">
+							<colgroup>
+								<col style="width: 10%;">
+								<col style="width: 40%;">
+								<col style="width: 40%;">
+								<col style="width: 10%;">
+							</colgroup>
+							<tr>
+								<td>${vo.no}</td>
+								<td>${vo.name}</td>
+								<td>${vo.regDate}</td>
+								<td><a href="${pageContext.request.contextPath}/guest/deleteForm?no=${vo.no}">[삭제]</a></td>
+							</tr>
+							<tr>
+								<td colspan=4 class="text-left">${vo.content}</td>
+							</tr>
+						</table>
 					</c:forEach>
 					<!-- //guestRead -->
 					

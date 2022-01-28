@@ -3,10 +3,13 @@
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd" xmlns:mvc="http://www.springframework.org/schema/mvc">
+	
 	<!--annotation 설정을하겠다. -->
 	<context:annotation-config />
+	
 	<!-- com.javaex.controller패키지밑에있는클래스중에 @Controller를달고있는클래스의객체를생성하겠다. (new 하겠다) -->
 	<context:component-scan base-package="com.javaex.controller" />
+	<context:component-scan base-package="com.javaex.api.controller" />
 
 	<!--기본뷰리졸버 -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -19,4 +22,17 @@
 	<!--서블릿컨테이너의디폴트서블릿위임핸들러 -->
 	<mvc:default-servlet-handler />
 	<mvc:annotation-driven />
+
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json; charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	
 </beans>
