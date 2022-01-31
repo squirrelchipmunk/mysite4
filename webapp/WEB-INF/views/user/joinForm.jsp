@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/user.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.12.4.js"></script>
 
 </head>
 
@@ -43,7 +44,8 @@
 							<div class="form-group">
 								<label class="form-text" for="input-uid">아이디</label> 
 								<input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
-								<button type="button" id="">중복체크</button>
+								<button type="button" id="dup-check">중복체크</button>
+								<p id="dup-msg"></p>
 							</div>
 	
 							<!-- 비밀번호 -->
@@ -100,5 +102,34 @@
 	<!-- //wrap -->
 
 </body>
+
+<script type="text/javascript">
+	$("#dup-check").on("click",function(){
+		var id = $("#input-uid").val();
+		//console.log(inputUid);
+		
+		$.ajax({
+			url: "${pageContext.request.contextPath}/user/dupCheck",
+			type : "post",
+			data : {id:id}, // 입력한 id를 보내 db에서 검색하고 같은 id가 있으면 true, 없으면 false 반환
+			
+			dataType: "json",
+			success : function(result){	// json > js
+				/*성공시처리해야될코드작성*/
+				//console.log(result);
+				if(result){
+					$("#dup-msg").html("<span style='color:red;'>사용 중인 id입니다.</span>");
+				}
+				else{
+					$("#dup-msg").html("사용하실 수 있는 id입니다.");
+				}
+				
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	});
+</script>
 
 </html>

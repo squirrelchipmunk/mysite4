@@ -29,6 +29,10 @@ public class UserDao {
 	public void modify(UserVo userVo) {
 		sqlSession.update("user.modifyUser", userVo);
 	}
+
+	public int searchId(String id) {
+		return sqlSession.selectOne("user.searchId", id);
+	}
 	
 	
 }

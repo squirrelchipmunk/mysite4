@@ -26,6 +26,15 @@ public class UserService {
 	public void modify(UserVo userVo) {
 		userDao.modify(userVo);
 	}
+
+	public boolean dupCheck(String id) {
+		
+		int num = userDao.searchId(id);
+		if(num >= 1)
+			return true;
+		else
+			return false;
+	}
 	
 	
 }

@@ -45,4 +45,12 @@
 		]]>
 	</update>
 	
+	<select id="searchId" parameterType="String" resultType="int">
+		<![CDATA[
+			select count(id)
+			from users
+			where id = #{id}
+		]]>
+	</select>
+	
 </mapper>
