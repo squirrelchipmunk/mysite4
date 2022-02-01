@@ -38,7 +38,7 @@
 	
 				<div id="user">
 					<div id="joinForm">
-						<form action="${pageContext.request.contextPath}/user/join" method="get">
+						<form id="join-form" action="${pageContext.request.contextPath}/user/join" method="get">
 							
 							<!-- 아이디 -->
 							<div class="form-group">
@@ -82,7 +82,7 @@
 							
 							<!-- 버튼영역 -->
 							<div class="button-area">
-								<button type="submit" id="btn-submit">회원가입</button>
+								<button type="button" id="btn-submit">회원가입</button>
 							</div>
 							
 						</form>
@@ -104,6 +104,7 @@
 </body>
 
 <script type="text/javascript">
+	var dup;
 	$("#dup-check").on("click",function(){
 		var id = $("#input-uid").val();
 		//console.log(inputUid);
@@ -117,6 +118,7 @@
 			success : function(result){	// json > js
 				/*성공시처리해야될코드작성*/
 				//console.log(result);
+				dup = result;
 				if(result){
 					$("#dup-msg").html("<span style='color:red;'>사용 중인 id입니다.</span>");
 				}
@@ -130,6 +132,23 @@
 			}
 		});
 	});
+	
+	$("#btn-submit").on("click",function(){
+		if(typeof dup == "undefined" || dup == true )
+			alert('아이디 중복체크 해주세요');
+		else if(! $('#chk-agree').is(":checked"))
+			alert('약관에 동의해주세요.');
+		else
+			$("#join-form").submit();
+	});
+	
+	$("#chk-agree").change(function(){
+		if (this.checked) {
+	       	open('https://www.naver.com/', 'agree-window', 'width=400, height=800');
+	    }
+	});
+	
+	
 </script>
 
 </html>
