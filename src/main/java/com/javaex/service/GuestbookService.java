@@ -22,13 +22,21 @@ public class GuestbookService {
 		guestbookDao.add(guestbookVo);
 	}
 	
-	public void delete(GuestbookVo guestbookVo) {
-		guestbookDao.delete(guestbookVo);
+	public int delete(GuestbookVo guestbookVo) {
+		return guestbookDao.delete(guestbookVo);
 	}
 
 	public GuestbookVo addGuestResultVo(GuestbookVo guestbookVo) {
 		int no = guestbookDao.insertSelectKey(guestbookVo);
 		return guestbookDao.selectByNo(no);
+	}
+
+	public String removeGuest(GuestbookVo guestbookVo) {
+		int count = guestbookDao.delete(guestbookVo);
+		if(count > 0)
+			return "success";
+		else
+			return "fail";
 	}
 	
 }

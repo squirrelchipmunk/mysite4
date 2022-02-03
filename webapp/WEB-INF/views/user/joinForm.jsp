@@ -134,8 +134,18 @@
 	});
 	
 	$("#btn-submit").on("click",function(){
-		if(typeof dup == "undefined" || dup == true )
+		if($("#input-uid").val() == "")
+			alert('아이디를 입력해주세요');
+		else if($("#input-pass").val() == "")
+			alert('패스워드를 입력해주세요');
+		else if($("#input-name").val() == "")
+			alert('이름를 입력해주세요');
+		else if(! $('input[name=gender]').is(":checked"))
+			alert('성별을 선택해주세요');
+		else if(typeof dup == "undefined")
 			alert('아이디 중복체크 해주세요');
+		else if(dup == true )
+			alert('다른 아이디를 사용해주세요');
 		else if(! $('#chk-agree').is(":checked"))
 			alert('약관에 동의해주세요.');
 		else
