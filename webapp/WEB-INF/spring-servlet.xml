@@ -34,5 +34,18 @@
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
+
+	<!--멀티파트리졸버 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!--최대업로드가능한바이트크기 -->
+		<property name="maxUploadSize" value="52428800" />
+		<!--디스크에임시파일을생성하기전에메모리에보관할수있는최대바이트크기 -->
+		<property name="maxInMemorySize" value="52428800" />
+		<!--defaultEncoding -->
+		<property name="defaultEncoding" value="utf-8" />
+	</bean>
+	
+	<!--url매핑-->
+	<mvc:resources mapping="/upload/**" location="file:C:/javaStudy/upload/" />
 	
 </beans>
