@@ -140,7 +140,7 @@
 				<form method="" action="">
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-danger" id="btnDel">삭제</button>
+						<span id="btnDel"></span>
 					</div>
 					
 				
@@ -173,9 +173,9 @@ $(".imgItem").on("click",function(){
 		
 		success : function(galleryVo){
 			if(sessionUserNo == galleryVo.userNo)
-				$("#btnDel").show();
+				$("#btnDel").html('<button type="button" class="btn btn-danger" id="btnDel">삭제</button>');
 			else
-				$("#btnDel").hide();
+				$("#btnDel").html('');
 			$("#viewModal").modal('show');
 			
 			var imgUrl = "${pageContext.request.contextPath}/upload/"+galleryVo.saveName;
