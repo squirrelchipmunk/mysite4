@@ -173,7 +173,7 @@ $(".imgItem").on("click",function(){
 		
 		success : function(galleryVo){
 			if(sessionUserNo == galleryVo.userNo)
-				$("#btnDel").html('<button type="button" class="btn btn-danger" id="btnDel">삭제</button>');
+				$("#btnDel").html('<button type="button" class="btn btn-danger">삭제</button>');
 			else
 				$("#btnDel").html('');
 			$("#viewModal").modal('show');
