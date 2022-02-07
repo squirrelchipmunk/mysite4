@@ -1,6 +1,8 @@
 package com.javaex.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,19 @@ public class BoardDao {
 		sqlSession.update("board.modify",boardVo);
 	}
 
+	public List<BoardVo> getList2(int startRnum, int endRnum) {
+		//TODO Auto-generated method stub
+		System.out.println("getList2");
+		System.out.println(startRnum+" "+endRnum);
+		Map <String, Integer> map = new HashMap<>();
+		map.put("startRnum", startRnum);
+		map.put("endRnum", endRnum);
+		return sqlSession.selectList("board.getList2", map);
+	}
 
+	
+	public int selectTotal() {
+		return sqlSession.selectOne("board.totalCnt");
+	}
 	
 }	

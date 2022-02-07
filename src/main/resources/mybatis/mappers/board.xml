@@ -17,6 +17,48 @@
 		]]>
 	</select>
 
+	<select id="getList2" parameterType="map" resultType="BoardVo">
+		<![CDATA[
+			select rt.rn,
+				   rt.no,
+				   rt.title,
+           	   	   rt.content,
+           		   rt.hit,
+           		   rt.regDate,
+           		   rt.userno,
+           		   rt.writer
+			from(select rownum rn,
+						ot.no,
+           				ot.title,
+           				ot.content,
+           				ot.hit,
+			            ot.regDate,
+			            ot.userno,
+			            ot.writer
+     			 from(  select b.no,
+                   			   b.title,
+			                   b.content,
+			                   b.hit,
+			                   to_char(b.reg_date,'yyyy-mm-dd hh24:mi:ss') regDate,
+			                   b.user_no userNo,
+			                   u.name writer
+            			from board b, users u
+            			where b.user_no = u.no
+            			order by no desc
+      			 )ot
+			)rt
+			where rn>= #{startRnum} and rn<= #{endRnum}
+		]]>
+	</select>
+
+	<select id="totalCnt" resultType="int">
+		<![CDATA[
+			select count(*)
+			from board b, users u
+			where b.user_no = u.no
+		]]>
+	</select>
+
 	<update id="incHit" parameterType="int">
 		<![CDATA[
 			update board
